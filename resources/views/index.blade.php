@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="assets/img/logo-fav.png">
-    <title>Beagle</title>
+    <title>{{ env('APP_NAME') }}</title>
     <link rel="stylesheet" type="text/css" href="assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css" />
     <link rel="stylesheet" type="text/css" href="assets/lib/material-design-icons/css/material-design-iconic-font.min.css" />
     <link rel="stylesheet" type="text/css" href="assets/lib/jquery.vectormap/jquery-jvectormap-1.2.2.css" />
@@ -18,6 +18,21 @@
     <link rel="stylesheet" type="text/css" href="assets/lib/bootstrap-slider/css/bootstrap-slider.css" />
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="assets/lib/jquery.gritter/css/jquery.gritter.css" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600">
+    <script src="../../js/font-awesome.js"></script>
+    <link rel="stylesheet" href="../../css/loading.css">
+    <link rel="stylesheet" href="../../css/loading_bars.css">
+    <link rel="stylesheet" href="../../css/common.css">
+
+
+    @if(isset($links))
+        @foreach($links as $link)
+            <link rel="stylesheet" href="{{ $link }}" type="text/css">
+        @endforeach
+    @endif
+
 </head>
 
 <body>
