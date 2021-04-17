@@ -23,7 +23,8 @@ class Product extends Model implements Transformable
     protected $fillable = [
         'name', 'maker_code', 'internal_code', 'status', 'active', 'brand', 'unit',
         'gtin', 'ncm', 'stock_location', 'stock_min', 'stock_max', 'quantity',
-        'class_type_id', 'description'
+        'class_type_id', 'description', 'price', 'icms', 'ipi', 'pis', 'shipping_value',
+        'shipping_tax', 'commission_value', 'commission_tax', 'variation_1', 'variation_2'
     ];
 
 }

@@ -57,8 +57,17 @@
                                     <input type="text" placeholder="Andrey Kalishnikov URSS" class="form-control input-sm">
                                 </div>
                                 <div class="form-group col-md-2 col-sm-12">
-                                    <label>Unidade</label>
-                                    <input type="text" placeholder="KG, Litros, metros, granel" class="form-control input-sm">
+                                    <label>Unidade de Medida</label>
+                                    <select name="unit" id="unit" class="form-control input-sm">
+                                        <option value="">Selecione</option>
+                                        @foreach($units as $un)
+                                            @if($edit)
+                                                <option value="{{ $un->id }}" @if($un->id == $product->unit) selected @endif>{{ $un->name }}</option>
+                                            @else
+                                                <option value="{{ $un->id }}">{{ $un->name }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group col-md-2 col-sm-12">
                                     <label>Quantidade</label>
@@ -97,6 +106,18 @@
                                     </select>
                                 </div>
                             </div>
+
+                            <div class="row no-margin-y">
+                                <div class="form-group col-xs-6">
+                                    <label for="">Opções</label>
+                                    <input type="text" name="variation_1" placeholder="Tamanho, cor e etc" class="form-control input-sm">
+                                </div>
+                                <div class="form-group col-xs-6">
+                                    <label for="">Opções</label>
+                                    <input type="text" name="variation_2" placeholder="Tamanho, cor e etc" class="form-control input-sm">
+                                </div>
+                            </div>
+
                             <div class="row no-margin-y">
                                 <div class="form-group col-xs-12">
                                     <label>Observações do Produto</label>
@@ -116,60 +137,56 @@
                         <span class="panel-subtitle"></span>
                     </div>
                     <div class="panel-body">
-
-                            <div class="row no-margin-y">
-                                <div class="form-group col-md-2 col-sm-12">
-                                    <label>Preço de Custo</label>
-                                    <input type="text" placeholder="" class="form-control input-sm">
-                                </div>
+                        <div class="row no-margin-y">
+                            <div class="form-group col-md-3 col-sm-12">
+                                <label>Preço de Custo</label>
+                                <input type="number" placeholder="0,00" class="form-control input-sm">
                             </div>
 
-                            <div class="row no-margin-y">
-                                <div class="form-group col-md-3 col-sm-12">
-                                    <label>Alíquota de ICMS</label>
-                                    <input type="text" placeholder="%" class="form-control input-sm">
-                                </div>
-                                <div class="form-group col-md-3 col-sm-12">
-                                    <label>Alíquota de IPI</label>
-                                    <input type="text" placeholder="%" class="form-control input-sm">
-                                </div>
-                                <div class="form-group col-md-3 col-sm-12">
-                                    <label>Alíquota de PIS</label>
-                                    <input type="text" placeholder="%" class="form-control input-sm">
-                                </div>
+                            <div class="form-group col-md-3 col-sm-12">
+                                <label>Alíquota de ICMS</label>
+                                <input type="number" placeholder="%" class="form-control input-sm">
                             </div>
-                            <div class="row no-margin-y">
-                                <div class="form-group col-md-2 col-sm-12">
-                                    <label>Alíquota do frete</label>
-                                    <input type="text" placeholder="%" class="form-control input-sm">
-                                </div>
-                                <div class="form-group col-md-1 col-sm-12">
-                                    <p class="pgt-out">OU</p>
-                                </div>
-                                <div class="form-group col-md-2 col-sm-12">
-                                    <label>Valor Frete</label>
-                                    <input type="text" placeholder="0,00" class="form-control input-sm">
-                                </div>
+                            <div class="form-group col-md-3 col-sm-12">
+                                <label>Alíquota de IPI</label>
+                                <input type="number" placeholder="%" class="form-control input-sm">
                             </div>
-                            <div class="row no-margin-y">
-                                <div class="form-group col-md-2 col-sm-12">
-                                    <label>Comissão vendedor</label>
-                                    <input type="text" placeholder="%" class="form-control input-sm">
-                                </div>
-                                <div class="form-group col-md-1 col-sm-12">
-                                    <p class="pgt-out">OU</p>
-                                </div>
-                                <div class="form-group col-md-2 col-sm-12">
-                                    <label>Valor Comissão</label>
-                                    <input type="text" placeholder="0,00" class="form-control input-sm">
-                                </div>
-                            </div><br>
-                            <div class="row no-margin-y">
-                                <div class="form-group col-md-2 col-sm-12 has-success">
-                                    <label>Lucro Zero</label>
-                                    <input type="text" placeholder="" readonly="readonly" value="Readonly input text" class="form-control input-sm">
-                                </div>
+                            <div class="form-group col-md-3 col-sm-12">
+                                <label>Alíquota de PIS</label>
+                                <input type="number" placeholder="%" class="form-control input-sm">
                             </div>
+                        </div>
+                        <div class="row no-margin-y">
+                            <div class="form-group col-md-2 col-sm-12">
+                                <label>Alíquota do frete</label>
+                                <input type="number" placeholder="%" class="form-control input-sm">
+                            </div>
+                            <div class="form-group col-md-1 col-sm-12">
+                                <p class="pgt-out">OU</p>
+                            </div>
+                            <div class="form-group col-md-2 col-sm-12">
+                                <label>Valor Frete</label>
+                                <input type="number" placeholder="0,00" class="form-control input-sm">
+                            </div>
+
+                            <div class="form-group col-md-2 col-sm-12">
+                                <label>Comissão vendedor</label>
+                                <input type="number" placeholder="%" class="form-control input-sm">
+                            </div>
+                            <div class="form-group col-md-1 col-sm-12">
+                                <p class="pgt-out">OU</p>
+                            </div>
+                            <div class="form-group col-md-2 col-sm-12">
+                                <label>Valor Comissão</label>
+                                <input type="number" placeholder="0,00" class="form-control input-sm">
+                            </div>
+                        </div><br>
+                        <div class="row no-margin-y">
+                            <div class="form-group col-md-2 col-sm-12 has-success">
+                                <label>Lucro Zero</label>
+                                <input type="text" placeholder="" readonly="readonly" value="" class="form-control input-sm">
+                            </div>
+                        </div>
                         <br>
                             <div class="row xs-pt-15">
                                 <div class="col-xs-12">

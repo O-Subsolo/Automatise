@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\MeasurementsUnitsRepository;
 use App\Repositories\ProductClassTypeRepository;
 use App\Repositories\ProductRepository;
 use Illuminate\Http\Request;
@@ -16,11 +17,16 @@ class ProductController extends Controller
      * @var ProductClassTypeRepository
      */
     private $productClassType;
+    /**
+     * @var MeasurementsUnitsRepository
+     */
+    private $units;
 
-    public function __construct(ProductRepository $repository, ProductClassTypeRepository $productClassType)
+    public function __construct(ProductRepository $repository, ProductClassTypeRepository $productClassType, MeasurementsUnitsRepository $units)
     {
         $this->repository = $repository;
         $this->productClassType = $productClassType;
+        $this->units = $units;
     }
 
     public function index()
@@ -36,9 +42,11 @@ class ProductController extends Controller
 
         $types = $this->productClassType->all();
 
+        $units = $this->units->orderBy('name')->all();
+
         $route = 'products.form';
 
-        return view('index', compact('route', 'edit', 'form', 'types', 'list'));
+        return view('index', compact('route', 'edit', 'form', 'types', 'list', 'units'));
     }
 
     public function store(Request $request)

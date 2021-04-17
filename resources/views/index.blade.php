@@ -164,7 +164,7 @@
                             <li class="">
                                 <a href="cliente-fornecedores.html">
                                     <i class="icon mdi mdi-accounts"></i>
-                                    <span>Forncedores</span>
+                                    <span>Fornecedores</span>
                                 </a>
                             </li>
                             <li class="">

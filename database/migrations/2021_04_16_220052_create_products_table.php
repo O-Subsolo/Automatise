@@ -24,7 +24,7 @@ class CreateProductsTable extends Migration
             $table->integer('status')->default(1);
             $table->integer('active')->default(1);
             $table->string('brand')->nullable();
-            $table->string('unit')->nullable();
+            $table->integer('unit')->nullable();
             $table->string('gtin')->nullable();
             $table->string('ncm')->nullable();
             $table->string('stock_location')->nullable();
@@ -33,6 +33,16 @@ class CreateProductsTable extends Migration
             $table->double('quantity')->nullable();
             $table->integer('class_type_id')->nullable();
             $table->text('description')->nullable();
+            $table->double('price')->nullable();
+            $table->double('icms')->nullable();
+            $table->double('ipi')->nullable();
+            $table->double('pis')->nullable();
+            $table->double('shipping_value')->nullable();
+            $table->double('shipping_tax')->nullable();
+            $table->double('commission_value')->nullable();
+            $table->double('commission_tax')->nullable();
+            $table->string('variation_1')->nullable();
+            $table->string('variation_2')->nullable();
             $table->timestamps();
 		});
 	}
