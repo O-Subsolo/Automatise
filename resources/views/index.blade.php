@@ -7,17 +7,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="assets/img/logo-fav.png">
+    <link rel="shortcut icon" href="../../assets/img/logo-fav.png">
     <title>{{ env('APP_NAME') }}</title>
-    <link rel="stylesheet" type="text/css" href="assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css" />
-    <link rel="stylesheet" type="text/css" href="assets/lib/material-design-icons/css/material-design-iconic-font.min.css" />
-    <link rel="stylesheet" type="text/css" href="assets/lib/jquery.vectormap/jquery-jvectormap-1.2.2.css" />
-    <link rel="stylesheet" type="text/css" href="assets/lib/jqvmap/jqvmap.min.css" />
-    <link rel="stylesheet" type="text/css" href="assets/lib/datetimepicker/css/bootstrap-datetimepicker.min.css" />
-    <link rel="stylesheet" type="text/css" href="assets/lib/select2/css/select2.min.css" />
-    <link rel="stylesheet" type="text/css" href="assets/lib/bootstrap-slider/css/bootstrap-slider.css" />
-    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="assets/lib/jquery.gritter/css/jquery.gritter.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/lib/material-design-icons/css/material-design-iconic-font.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/lib/jquery.vectormap/jquery-jvectormap-1.2.2.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/lib/jqvmap/jqvmap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/lib/datetimepicker/css/bootstrap-datetimepicker.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/lib/select2/css/select2.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/lib/bootstrap-slider/css/bootstrap-slider.css" />
+    <link rel="stylesheet" href="../../assets/css/style.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/lib/jquery.gritter/css/jquery.gritter.css" />
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Roboto:300,400,500,600,700">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600">
@@ -44,7 +44,7 @@
                 <ul class="nav navbar-nav navbar-right be-user-nav">
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="dropdown-toggle">
-                            <img src="assets/img/avatar.jpg" alt="Avatar">
+                            <img src="../../assets/img/avatar.jpg" alt="Avatar">
                             <span class="user-name">Julio Ferreira</span>
                         </a>
                         <ul role="menu" class="dropdown-menu">
@@ -71,25 +71,25 @@
                                         <div class="content">
                                             <ul>
                                                 <li class="notification notification-unread"><a href="#">
-                                                        <div class="image"><img src="assets/img/avatar2.png" alt="Avatar"></div>
+                                                        <div class="image"><img src="../../assets/img/avatar2.png" alt="Avatar"></div>
                                                         <div class="notification-info">
                                                             <div class="text"><span class="user-name">Jessica Caruso</span> accepted your invitation to join the team.</div><span class="date">2 min ago</span>
                                                         </div>
                                                     </a></li>
                                                 <li class="notification"><a href="#">
-                                                        <div class="image"><img src="assets/img/avatar3.png" alt="Avatar"></div>
+                                                        <div class="image"><img src="../../assets/img/avatar3.png" alt="Avatar"></div>
                                                         <div class="notification-info">
                                                             <div class="text"><span class="user-name">Joel King</span> is now following you</div><span class="date">2 days ago</span>
                                                         </div>
                                                     </a></li>
                                                 <li class="notification"><a href="#">
-                                                        <div class="image"><img src="assets/img/avatar4.png" alt="Avatar"></div>
+                                                        <div class="image"><img src="../../assets/img/avatar4.png" alt="Avatar"></div>
                                                         <div class="notification-info">
                                                             <div class="text"><span class="user-name">John Doe</span> is watching your main repository</div><span class="date">2 days ago</span>
                                                         </div>
                                                     </a></li>
                                                 <li class="notification"><a href="#">
-                                                        <div class="image"><img src="assets/img/avatar5.png" alt="Avatar"></div>
+                                                        <div class="image"><img src="../../assets/img/avatar5.png" alt="Avatar"></div>
                                                         <div class="notification-info"><span class="text"><span class="user-name">Emily Carter</span> is now following you</span><span class="date">5 days ago</span></div>
                                                     </a></li>
                                             </ul>
@@ -106,14 +106,14 @@
                                 <div class="list">
                                     <div class="content">
                                         <div class="row">
-                                            <div class="col-xs-4"><a href="#" class="connection-item"><img src="assets/img/github.png" alt="Github"><span>GitHub</span></a></div>
-                                            <div class="col-xs-4"><a href="#" class="connection-item"><img src="assets/img/bitbucket.png" alt="Bitbucket"><span>Bitbucket</span></a></div>
-                                            <div class="col-xs-4"><a href="#" class="connection-item"><img src="assets/img/slack.png" alt="Slack"><span>Slack</span></a></div>
+                                            <div class="col-xs-4"><a href="#" class="connection-item"><img src="../../assets/img/github.png" alt="Github"><span>GitHub</span></a></div>
+                                            <div class="col-xs-4"><a href="#" class="connection-item"><img src="../../assets/img/bitbucket.png" alt="Bitbucket"><span>Bitbucket</span></a></div>
+                                            <div class="col-xs-4"><a href="#" class="connection-item"><img src="../../assets/img/slack.png" alt="Slack"><span>Slack</span></a></div>
                                         </div>
                                         <div class="row">
-                                            <div class="col-xs-4"><a href="#" class="connection-item"><img src="assets/img/dribbble.png" alt="Dribbble"><span>Dribbble</span></a></div>
-                                            <div class="col-xs-4"><a href="#" class="connection-item"><img src="assets/img/mail_chimp.png" alt="Mail Chimp"><span>Mail Chimp</span></a></div>
-                                            <div class="col-xs-4"><a href="#" class="connection-item"><img src="assets/img/dropbox.png" alt="Dropbox"><span>Dropbox</span></a></div>
+                                            <div class="col-xs-4"><a href="#" class="connection-item"><img src="../../assets/img/dribbble.png" alt="Dribbble"><span>Dribbble</span></a></div>
+                                            <div class="col-xs-4"><a href="#" class="connection-item"><img src="../../assets/img/mail_chimp.png" alt="Mail Chimp"><span>Mail Chimp</span></a></div>
+                                            <div class="col-xs-4"><a href="#" class="connection-item"><img src="../../assets/img/dropbox.png" alt="Dropbox"><span>Dropbox</span></a></div>
                                         </div>
                                     </div>
                                 </div>
@@ -256,25 +256,25 @@
                                     <div class="content">
                                         <h2>Recent</h2>
                                         <div class="contact-list contact-list-recent">
-                                            <div class="user"><a href="#"><img src="assets/img/avatar1.png" alt="Avatar">
+                                            <div class="user"><a href="#"><img src="../../assets/img/avatar1.png" alt="Avatar">
                                                     <div class="user-data"><span class="status away"></span><span class="name">Claire Sassu</span><span class="message">Can you share the...</span></div>
                                                 </a></div>
-                                            <div class="user"><a href="#"><img src="assets/img/avatar2.png" alt="Avatar">
+                                            <div class="user"><a href="#"><img src="../../assets/img/avatar2.png" alt="Avatar">
                                                     <div class="user-data"><span class="status"></span><span class="name">Maggie jackson</span><span class="message">I confirmed the info.</span></div>
                                                 </a></div>
-                                            <div class="user"><a href="#"><img src="assets/img/avatar3.png" alt="Avatar">
+                                            <div class="user"><a href="#"><img src="../../assets/img/avatar3.png" alt="Avatar">
                                                     <div class="user-data"><span class="status offline"></span><span class="name">Joel King </span><span class="message">Ready for the meeti...</span></div>
                                                 </a></div>
                                         </div>
                                         <h2>Contacts</h2>
                                         <div class="contact-list">
-                                            <div class="user"><a href="#"><img src="assets/img/avatar4.png" alt="Avatar">
+                                            <div class="user"><a href="#"><img src="../../assets/img/avatar4.png" alt="Avatar">
                                                     <div class="user-data2"><span class="status"></span><span class="name">Mike Bolthort</span></div>
                                                 </a></div>
-                                            <div class="user"><a href="#"><img src="assets/img/avatar5.png" alt="Avatar">
+                                            <div class="user"><a href="#"><img src="../../assets/img/avatar5.png" alt="Avatar">
                                                     <div class="user-data2"><span class="status"></span><span class="name">Maggie jackson</span></div>
                                                 </a></div>
-                                            <div class="user"><a href="#"><img src="assets/img/avatar6.png" alt="Avatar">
+                                            <div class="user"><a href="#"><img src="../../assets/img/avatar6.png" alt="Avatar">
                                                     <div class="user-data2"><span class="status offline"></span><span class="name">Jhon Voltemar</span></div>
                                                 </a></div>
                                         </div>
@@ -287,7 +287,7 @@
                         </div>
                         <div class="chat-window">
                             <div class="title">
-                                <div class="user"><img src="assets/img/avatar2.png" alt="Avatar">
+                                <div class="user"><img src="../../assets/img/avatar2.png" alt="Avatar">
                                     <h2>Maggie jackson</h2><span>Active 1h ago</span>
                                 </div><span class="icon return mdi mdi-chevron-left"></span>
                             </div>
@@ -449,32 +449,32 @@
 <input type="hidden" id="list" value="@if(isset($list) && $list) 1 @else 0 @endif">
 <input type="hidden" id="form" value="@if(isset($form) && $form) 1 @else 0 @endif">
 
-<script src="assets/lib/jquery/jquery.min.js" type="text/javascript"></script>
-<script src="assets/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
-<script src="assets/js/main.js" type="text/javascript"></script>
-<script src="assets/lib/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
-<script src="assets/lib/jquery-flot/jquery.flot.js" type="text/javascript"></script>
-<script src="assets/lib/jquery-flot/jquery.flot.pie.js" type="text/javascript"></script>
-<script src="assets/lib/jquery-flot/jquery.flot.resize.js" type="text/javascript"></script>
-<script src="assets/lib/jquery-flot/plugins/jquery.flot.orderBars.js" type="text/javascript"></script>
-<script src="assets/lib/jquery-flot/plugins/curvedLines.js" type="text/javascript"></script>
-<script src="assets/lib/jquery.sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
-<script src="assets/lib/countup/countUp.min.js" type="text/javascript"></script>
-<script src="assets/lib/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
-<script src="assets/lib/jqvmap/jquery.vmap.min.js" type="text/javascript"></script>
-<script src="assets/lib/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
-<script src="assets/js/app-dashboard.js" type="text/javascript"></script>
+<script src="../../assets/lib/jquery/jquery.min.js" type="text/javascript"></script>
+<script src="../../assets/lib/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js" type="text/javascript"></script>
+<script src="../../assets/js/main.js" type="text/javascript"></script>
+<script src="../../assets/lib/bootstrap/dist/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="../../assets/lib/jquery-flot/jquery.flot.js" type="text/javascript"></script>
+<script src="../../assets/lib/jquery-flot/jquery.flot.pie.js" type="text/javascript"></script>
+<script src="../../assets/lib/jquery-flot/jquery.flot.resize.js" type="text/javascript"></script>
+<script src="../../assets/lib/jquery-flot/plugins/jquery.flot.orderBars.js" type="text/javascript"></script>
+<script src="../../assets/lib/jquery-flot/plugins/curvedLines.js" type="text/javascript"></script>
+<script src="../../assets/lib/jquery.sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
+<script src="../../assets/lib/countup/countUp.min.js" type="text/javascript"></script>
+<script src="../../assets/lib/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+<script src="../../assets/lib/jqvmap/jquery.vmap.min.js" type="text/javascript"></script>
+<script src="../../assets/lib/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
+<script src="../../assets/js/app-dashboard.js" type="text/javascript"></script>
 
 <!-- Form Scripts -->
-<script src="assets/lib/moment.js/min/moment.min.js" type="text/javascript"></script>
-<script src="assets/lib/datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
-<script src="assets/lib/select2/js/select2.min.js" type="text/javascript"></script>
-<script src="assets/lib/bootstrap-slider/js/bootstrap-slider.js" type="text/javascript"></script>
-<script src="assets/js/app-form-elements.js" type="text/javascript"></script>
-<script src="assets/lib/jquery.gritter/js/jquery.gritter.js" type="text/javascript"></script>
-<script src="assets/js/app-ui-notifications.js" type="text/javascript"></script>
-<script src="assets/lib/jquery.maskedinput/jquery.maskedinput.min.js" type="text/javascript"></script>
-<script src="assets/js/app-form-masks.js" type="text/javascript"></script>
+<script src="../../assets/lib/moment.js/min/moment.min.js" type="text/javascript"></script>
+<script src="../../assets/lib/datetimepicker/js/bootstrap-datetimepicker.min.js" type="text/javascript"></script>
+<script src="../../assets/lib/select2/js/select2.min.js" type="text/javascript"></script>
+<script src="../../assets/lib/bootstrap-slider/js/bootstrap-slider.js" type="text/javascript"></script>
+<script src="../../assets/js/app-form-elements.js" type="text/javascript"></script>
+<script src="../../assets/lib/jquery.gritter/js/jquery.gritter.js" type="text/javascript"></script>
+<script src="../../assets/js/app-ui-notifications.js" type="text/javascript"></script>
+<script src="../../assets/lib/jquery.maskedinput/jquery.maskedinput.min.js" type="text/javascript"></script>
+<script src="../../assets/js/app-form-masks.js" type="text/javascript"></script>
 <!-- End Form Scripts -->
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -483,7 +483,11 @@
 <script src="../../js/loading.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
 <!--===============================================================================================-->
-<script type='text/javascript' src='//igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"
+        integrity="sha512-Rdk63VC+1UYzGSgd3u2iadi0joUrcwX0IWp2rTh6KXFoAmgOjRS99Vynz1lJPT8dLjvo6JZOqpAHJyfCEZ5KoA=="
+        crossorigin="anonymous">
+</script>
+<script src="../../js/simple-mask-money.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 
 @if(isset($scripts))

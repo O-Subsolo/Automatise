@@ -129,7 +129,8 @@ $(function () {
     //Limita o usuário a digitar apenas números
     $(".number").keypress(function (e) {
         if (e.which < 48 || e.which > 57)
-            return false;
+            if(e.which !== 44)
+                return false;
 
     });
 
@@ -434,7 +435,31 @@ $(function () {
     //$("b[role='presentation']").css('display', 'none');
     $(".select2-selection__arrow").css('display', 'none');
 
+    /*var atual = 600000.00;
+
+//com R$
+    var f = atual.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'});
+
+//sem R$
+    var f2 = atual.toLocaleString('pt-br', {minimumFractionDigits: 2});
+
+    console.log(f);
+    console.log(f2);*/
+
+
+    /*$('.money').keyup(function (){
+
+        var value = parseFloat($(this).val()); console.log(value);
+
+        var val = value.toLocaleString('pt-br', {currency: 'BRL', minimumFractionDigits: 2});
+
+        console.log(val);
+        $(this).val(val);
+    });*/
 });
+
+
+
 
 function add_model($model)
 {

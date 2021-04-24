@@ -1,3 +1,73 @@
+$(function (){
+
+    $("#ncm").keyup(function (e){
+
+        var ncm = '';
+
+        console.log(e.which);
+        console.log(this.value.length);
+
+        if(this.value.length == 4 && e.which != 8)
+        {
+            ncm = this.value.toString() + '.';
+
+            console.log(ncm);
+
+            $("#ncm").val(ncm);
+        }
+        else if(this.value.length == 7 && e.which != 8)
+        {
+            ncm = this.value.toString() + '.';
+
+            $("#ncm").val(ncm);
+        }
+
+    });
+
+    $("#form_products").submit(function (e){
+
+        if($("#shipping_tax").val() != "" && $("#shipping_value").val() != "")
+        {
+            sweet_alert_error('Preencha apenas o campo alíquota do frete ou valor do frete');
+            $("#shipping_tax").addClass('has-error').removeClass('has-success');
+            $("#shipping_value").addClass('has-error').removeClass('has-success');
+            e.preventDefault();
+            return;
+        }
+
+        if($("#commission_value").val() != "" && $("#commission_tax").val() != "")
+        {
+            sweet_alert_error('Preencha apenas o campo comissão percentual do vendedor ou valor total da comissão');
+            $("#commission_tax").addClass('has-error').removeClass('has-success');
+            $("#commission_value").addClass('has-error').removeClass('has-success');
+            e.preventDefault();
+            return;
+        }
+    });
+
+    $(".opt-ship").change(function (){
+        console.log($(this));
+        if(($("#shipping_tax").val() != "" && $("#shipping_value").val() == "") || ($("#shipping_tax").val() == "" && $("#shipping_value") != ""))
+            $(".opt-ship").removeClass('has-error').addClass('has-success');
+
+        else if($("#shipping_tax").val() != "" && $("#shipping_value").val() != "") {
+            $(".opt-ship").removeClass('has-success').addClass('has-error');
+            sweet_alert_error('Preencha apenas o campo alíquota do frete ou valor do frete');
+        }
+    });
+
+
+    $(".opt-comm").change(function (){
+        if(($("#commission_tax").val() != "" && $("#commission_value").val() == "") || ($("#commission_tax").val() == "" && $("#commission_value") != ""))
+            $('.opt-comm').removeClass('has-error').addClass('has-success');
+
+        else if($("#commission_tax").val() != "" && $("#commission_value").val() != "") {
+            $(".opt-comm").removeClass('has-success').addClass('has-error');
+            sweet_alert_error('Preencha apenas o campo comissão percentual do vendedor ou valor total da comissão');
+        }
+    });
+
+});
 
 
 function delete_product(id)

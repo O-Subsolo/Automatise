@@ -19,12 +19,17 @@ Route::get('/', function () {
 
 Route::get('/criar_produto', 'ProductController@create')->name('product.create');
 
+Route::get('/editar_produto/{id}', 'ProductController@edit')->name('product.edit');
+
 Route::post('/product', 'ProductController@store')->name('product.store');
 
 Route::put('/product/{id}', 'ProductController@update')->name('product.update');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
+
+Route::get('/domains/{length?}', 'TesteController@domains');
