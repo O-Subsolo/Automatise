@@ -67,8 +67,29 @@ $(function (){
         }
     });
 
+    $("#file").change(function() {
+        readURL(this);
+        $(".photo-product").css('display', 'none');
+    });
+
 });
 
+function change_photo()
+{
+    $("#file").trigger('click');
+}
+
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $('#photo_product').attr('src', e.target.result).removeAttr('hidden');
+        }
+
+        reader.readAsDataURL(input.files[0]); // convert to base64 string
+    }
+}
 
 function delete_product(id)
 {

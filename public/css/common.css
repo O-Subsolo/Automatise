@@ -423,3 +423,21 @@ input:checked + .slider:before {
 .has-success{
     border: 1px solid green;
 }
+
+.photo-product{
+    font-size: 100px;
+    margin-left: 40px;
+    cursor: pointer;
+}
+
+.photo-p-help{
+    cursor: pointer;
+    margin-left: 1%;
+    font-family: Cursive, Roboto, sans-serif;
+}
+
+#photo_product{
+    max-width: 240px;
+    max-height: 170px;
+    cursor: pointer;
+}

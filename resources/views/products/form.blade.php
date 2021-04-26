@@ -13,7 +13,7 @@
             <div class="col-sm-12">
                 <div class="panel panel-default panel-border-color panel-border-color-primary">
                     <div class="panel-heading panel-heading-divider">
-                        Adicionar Produtos | Serviço
+                        @if($edit) Editar Produto - {{ $product->name }} @else Adicionar Produtos @endif
                         <span class="panel-subtitle"></span>
                     </div>
                     <div class="panel-body">
@@ -26,7 +26,14 @@
 
                         @csrf
                             <div class="row no-margin-y">
-                                <div class="form-group col-md-6 col-sm-12">
+                                <div class="form-group col-md-2 col-sm-12">
+                                    <input type="file" name="photo" id="file" style="display:none;">
+                                    <img src="#" alt="" id="photo_product" hidden onclick="change_photo()">
+                                    <i class="fas fa-cloud-upload-alt photo-product" onclick="change_photo();"></i>
+                                    <p class="photo-p-help" onclick="change_photo();">Clique para editar a Foto do Produto</p>
+                                </div>
+
+                                <div class="form-group col-md-10 col-sm-12">
                                     <label>Nome Produto</label>
                                     <input type="text" id="name" name="name" placeholder="AK-47" class="form-control input-sm"
                                         value="@if($edit){{ $product->name }}@else{{ old('name') }}@endif">
@@ -51,15 +58,19 @@
                                         <option value="0" @if($edit && $product->status === 0) selected @endif>Inativo</option>
                                     </select>
                                 </div>
-                            </div>
 
-                            <div class="row no-margin-y">
-                                <div class="form-group col-md-3 col-sm-12">
+                                <div class="form-group col-md-4 col-sm-12">
                                     <label>Marca</label>
                                     <input type="text" name="brand" id="brand" placeholder="Andrey Kalishnikov URSS" class="form-control input-sm"
                                            value="@if($edit){{ $product->brand }}@else{{ old('brand') }}@endif">
                                 </div>
-                                <div class="form-group col-md-2 col-sm-12">
+                            </div>
+
+                                <br>
+
+                            <div class="row no-margin-y">
+
+                                <div class="form-group col-md-3 col-sm-12">
                                     <label>Unidade de Medida</label>
                                     <select name="unit" id="unit" class="form-control input-sm">
                                         <option value="">Selecione</option>
@@ -72,7 +83,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="form-group col-md-2 col-sm-12">
+                                <div class="form-group col-md-3 col-sm-12">
                                     <label>Quantidade</label>
                                     <input type="text" name="quantity" id="quantity" placeholder="5000" class="form-control input-sm number"
                                            value="@if($edit){{ $product->quantity }}@else{{ old('quantity') }}@endif">
@@ -82,7 +93,7 @@
                                     <input type="text" placeholder="1234567891472" name="gtin" id="gtin" maxlength="14" class="form-control input-sm number"
                                            value="@if($edit){{ $product->gtin }}@else{{ old('gtin') }}@endif">
                                 </div>
-                                <div class="form-group col-md-2 col-sm-12">
+                                <div class="form-group col-md-3 col-sm-12">
                                     <label>NCM</label>
                                     <input type="text" placeholder="0000.00.00" name="ncm" id="ncm" maxlength="10" class="form-control input-sm number"
                                            value="@if($edit){{ $product->ncm }}@else{{ old('ncm') }}@endif">

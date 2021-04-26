@@ -8,6 +8,7 @@ use App\Repositories\ProductRepository;
 use App\Traits\Config;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -96,7 +97,11 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $data = $request->all();
+        $data = $request->all(); //dd($request->all());
+
+        //$data['photo'] = $request->file('photo')->store(getcwd() .'\images');
+
+        $data['photo'] = Storage::putFile('images', $request->file('photo'));
 
         if($data['internal_code'] == "")
         {
