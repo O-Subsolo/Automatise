@@ -76,21 +76,26 @@ class ProductController extends Controller
 
         $product = $this->repository->findByField('id', $id)->first();
 
-        $product->stock_min = str_replace('.', ',', $product->stock_min);
-        $product->stock_max = str_replace('.', ',', $product->stock_max);
-        $product->quantity = str_replace('.', ',', $product->quantity);
-        $product->price = str_replace('.', ',', $product->price);
-        $product->icms = str_replace('.', ',', $product->icms);
-        $product->ipi = str_replace('.', ',', $product->ipi);
-        $product->pis = str_replace('.', ',', $product->pis);
-        $product->shipping_value = str_replace('.', ',', $product->shipping_value);
-        $product->shipping_tax = str_replace('.', ',', $product->shipping_tax);
-        $product->commission_value = str_replace('.', ',', $product->commission_value);
-        $product->commission_tax = str_replace('.', ',', $product->commission_tax);
 
-        if($product)
+
+        if($product) {
+            $product->photo = str_replace('public', 'storage', $product->photo);
+
+            $product->stock_min = str_replace('.', ',', $product->stock_min);
+            $product->stock_max = str_replace('.', ',', $product->stock_max);
+            $product->quantity = str_replace('.', ',', $product->quantity);
+            $product->price = str_replace('.', ',', $product->price);
+            $product->icms = str_replace('.', ',', $product->icms);
+            $product->ipi = str_replace('.', ',', $product->ipi);
+            $product->pis = str_replace('.', ',', $product->pis);
+            $product->shipping_value = str_replace('.', ',', $product->shipping_value);
+            $product->shipping_tax = str_replace('.', ',', $product->shipping_tax);
+            $product->commission_value = str_replace('.', ',', $product->commission_value);
+            $product->commission_tax = str_replace('.', ',', $product->commission_tax);
+
             return view('index', compact('product', 'route', 'edit', 'form', 'types',
-               'list', 'units', 'scripts'));
+                'list', 'units', 'scripts'));
+        }
 
         abort(404);
     }
@@ -99,13 +104,13 @@ class ProductController extends Controller
     {
         $data = $request->all(); //dd($request->all());
 
-        //$data['photo'] = $request->file('photo')->store(getcwd() .'\images');
+        $data['photo'] = $request->file('photo') ? $request->file('photo')->store('public/images') : null;
 
-        $data['photo'] = Storage::putFile('images', $request->file('photo'));
+        //$data['photo'] = Storage::putFile('images', $request->file('photo'));
 
         if($data['internal_code'] == "")
         {
-            $code = $this->random_string(6);
+            $code = $this->random_string(10);
 
             if($this->repository->findByField('internal_code', $code)->first())
                 $this->store($request);
@@ -155,6 +160,9 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
+
+        if($request->file('photo'))
+            $data['photo'] = $request->file('photo')->store('public/images');
 
         $array_keys = array_keys($data);
 

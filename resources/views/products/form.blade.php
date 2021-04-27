@@ -18,18 +18,23 @@
                     </div>
                     <div class="panel-body">
                         @if($edit)
-                            <form id="form_products" action="{{ route('product.update', ['id' => $product->id]) }}" method="POST">
+                            <form id="form_products" action="{{ route('product.update', ['id' => $product->id]) }}" method="POST" enctype="multipart/form-data">
                             @method('PUT')
                         @else
-                            <form id="form_products" action="{{ route('product.store') }}" method="POST">
+                            <form id="form_products" action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
                         @endif
 
                         @csrf
                             <div class="row no-margin-y">
                                 <div class="form-group col-md-2 col-sm-12">
                                     <input type="file" name="photo" id="file" style="display:none;">
-                                    <img src="#" alt="" id="photo_product" hidden onclick="change_photo()">
-                                    <i class="fas fa-cloud-upload-alt photo-product" onclick="change_photo();"></i>
+                                    @if($edit && $product->photo != "")
+                                        <img src="{{ '../../'.$product->photo }}" alt="" id="photo_product" onclick="change_photo()">
+                                    @else
+                                        <img src="#" alt="" id="photo_product" hidden onclick="change_photo()">
+                                        <i class="fas fa-cloud-upload-alt photo-product" onclick="change_photo();"></i>
+                                    @endif
+
                                     <p class="photo-p-help" onclick="change_photo();">Clique para editar a Foto do Produto</p>
                                 </div>
 
