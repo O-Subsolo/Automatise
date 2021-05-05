@@ -9,6 +9,7 @@
     <meta name="author" content="">
     <link rel="shortcut icon" href="../../assets/img/logo-fav.png">
     <title>{{ env('APP_NAME') }}</title>
+
     <link rel="stylesheet" type="text/css" href="../../assets/lib/perfect-scrollbar/css/perfect-scrollbar.min.css" />
     <link rel="stylesheet" type="text/css" href="../../assets/lib/material-design-icons/css/material-design-iconic-font.min.css" />
     <link rel="stylesheet" type="text/css" href="../../assets/lib/jquery.vectormap/jquery-jvectormap-1.2.2.css" />
@@ -168,7 +169,7 @@
                                 </a>
                             </li>
                             <li class="">
-                                <a href="produtos.html">
+                                <a href="{{ route('product.index') }}">
                                     <i class="icon mdi mdi-shopping-cart"></i>
                                     <span>Produtos</span>
                                 </a>
@@ -464,6 +465,7 @@
 <script src="../../assets/lib/jqvmap/jquery.vmap.min.js" type="text/javascript"></script>
 <script src="../../assets/lib/jqvmap/maps/jquery.vmap.world.js" type="text/javascript"></script>
 <script src="../../assets/js/app-dashboard.js" type="text/javascript"></script>
+<script src="../../assets/js/app-icons.js" type="text/javascript"></script>
 
 <!-- Form Scripts -->
 <script src="../../assets/lib/moment.js/min/moment.min.js" type="text/javascript"></script>
@@ -489,6 +491,7 @@
 </script>
 <script src="../../js/simple-mask-money.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+<script src="../../assets/lib/jquery.niftymodals/dist/jquery.niftymodals.js" type="text/javascript"></script>
 
 @if(isset($scripts))
     @foreach($scripts as $script)
@@ -516,19 +519,141 @@
     <script>resize_options_buttons()</script>
 @endif
 
+<!-- Nifty Modal-->
+<div id="full-success" class="modal-container modal-full-color modal-full-color-success modal-effect-8">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close modal-close" id="btn_full_success"><span class="mdi mdi-close"></span></button>
+        </div>
+        <div class="modal-body">
+            <div class="text-center"><span class="modal-main-icon mdi mdi-check"></span>
+                <h3 id="h3_full_success">Success!!!</h3>
+                <p id="p_full_success">Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Fusce ultrices euismod lobortis.</p>
+                <div class="xs-mt-50">
+                    <button type="button" data-dismiss="modal" class="btn btn-success btn-space modal-close">Fechar</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer"></div>
+    </div>
+</div>
+<!-- Nifty Modal-->
+<div id="full-primary" class="modal-container modal-full-color modal-full-color-primary modal-effect-8">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close modal-close"><span class="mdi mdi-close"></span></button>
+        </div>
+        <div class="modal-body">
+            <div class="text-center"><span class="modal-main-icon mdi mdi-info-outline"></span>
+                <h3 id="h3_full_primary">Information!</h3>
+                <p id="p_full_primary">Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Fusce ultrices euismod lobortis.</p>
+                <div class="xs-mt-50">
+                    <button type="button" data-dismiss="modal" class="btn btn-default btn-space modal-close">Cancel</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-success btn-space modal-close">Proceed</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer"></div>
+    </div>
+</div>
+<!-- Nifty Modal-->
+<div id="full-warning" class="modal-container modal-full-color modal-full-color-warning modal-effect-8">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close modal-close"><span class="mdi mdi-close"></span></button>
+        </div>
+        <div class="modal-body">
+            <div class="text-center"><span class="modal-main-icon mdi mdi-alert-triangle"></span>
+                <h3 id="h3_full_warning">Warning!</h3>
+                <p id="p_full_warning">Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Fusce ultrices euismod lobortis.</p>
+                <div class="xs-mt-50">
+                    <button type="button" data-dismiss="modal" class="btn btn-default btn-space modal-close">Cancel</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-success btn-space modal-close">Proceed</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer"></div>
+    </div>
+</div>
+<!-- Nifty Modal-->
+<div id="full-danger" class="modal-container modal-full-color modal-full-color-danger modal-effect-8">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close modal-close"><span class="mdi mdi-close"></span></button>
+        </div>
+        <div class="modal-body">
+            <div class="text-center"><span class="modal-main-icon mdi mdi-close-circle-o"></span>
+                <h3 id="h3_full_danger">Danger!</h3>
+                <p id="p_full_danger">Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Fusce ultrices euismod lobortis.</p>
+                <div class="xs-mt-50">
+                    <button type="button" data-dismiss="modal" class="btn btn-default btn-space modal-close">Cancelar</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-success btn-space modal-close" onclick="delete_model();">Excluir</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer"></div>
+    </div>
+</div>
+<!-- Nifty Modal-->
+<div id="full-error" class="modal-container modal-full-color modal-full-color-danger modal-effect-8">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close modal-close"><span class="mdi mdi-close"></span></button>
+        </div>
+        <div class="modal-body">
+            <div class="text-center"><span class="modal-main-icon mdi mdi-close-circle-o"></span>
+                <h3 id="h3_full_error">Danger!</h3>
+                <p id="p_full_error">Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Fusce ultrices euismod lobortis.</p>
+                <div class="xs-mt-50">
+                    <button type="button" data-dismiss="modal" class="btn btn-default btn-space modal-close">Fechar</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer"></div>
+    </div>
+</div>
+<!-- Nifty Modal-->
+<div id="full-dark" class="modal-container modal-full-color modal-full-color-dark modal-effect-8">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close modal-close"><span class="mdi mdi-close"></span></button>
+        </div>
+        <div class="modal-body">
+            <div class="text-center"><span class="modal-main-icon mdi mdi-close-circle-o"></span>
+                <h3 id="h3_full_dark">Danger!</h3>
+                <p id="p_full_dark">Lorem ipsum dolor sit amet, consectetur adipiscing elit.<br>Fusce ultrices euismod lobortis.</p>
+                <div class="xs-mt-50">
+                    <button type="button" data-dismiss="modal" class="btn btn-default btn-space modal-close">Cancel</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-success btn-space modal-close">Proceed</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer"></div>
+    </div>
+</div>
+<div class="modal-overlay"></div>
+
 <script type="text/javascript">
     $(document).ready(function(){
         //initialize the javascript
         App.init();
-        App.dashboard();
+        //App.dashboard();
 
         if($("#form").val() == 1){
             App.formElements();
             App.masks();
         }
 
-        if($("#list").val() == 1)
-            App.dataTables();
+        if($("#list").val() == 1) {
+            //App.dataTables();
+            App.IconsFilter();
+        }
+
+        $.fn.niftyModal('setDefaults',{
+            overlaySelector: '.modal-overlay',
+            closeSelector: '.modal-close',
+            classAddAfterOpen: 'modal-show',
+        });
     });
 </script>
 

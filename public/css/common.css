@@ -420,7 +420,7 @@ input:checked + .slider:before {
     border: 1px solid red;
 }
 
-.has-success{
+.custom-has-success{
     border: 1px solid green;
 }
 

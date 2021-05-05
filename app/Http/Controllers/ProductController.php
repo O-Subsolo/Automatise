@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\CategoryRepository;
 use App\Repositories\MeasurementsUnitsRepository;
 use App\Repositories\ProductClassTypeRepository;
 use App\Repositories\ProductRepository;
@@ -26,12 +27,18 @@ class ProductController extends Controller
      * @var MeasurementsUnitsRepository
      */
     private $units;
+    /**
+     * @var CategoryRepository
+     */
+    private $categories;
 
-    public function __construct(ProductRepository $repository, ProductClassTypeRepository $productClassType, MeasurementsUnitsRepository $units)
+    public function __construct(ProductRepository $repository, ProductClassTypeRepository $productClassType, MeasurementsUnitsRepository $units,
+                                CategoryRepository $categories)
     {
         $this->repository = $repository;
         $this->productClassType = $productClassType;
         $this->units = $units;
+        $this->categories = $categories;
     }
 
     public function index()
@@ -39,6 +46,34 @@ class ProductController extends Controller
         $list = true;
 
         $form = false;
+
+        $route = 'products.index';
+
+        $scripts[] = '../../js/product.js';
+
+        $categories = $this->categories->findByField('class', 'product');
+
+        foreach ($categories as $category) {
+            $category->name = ucfirst($category->name);
+        }
+
+        $products = $this->repository->findByField('status', 1);
+
+        foreach ($products as $product) {
+            $product->photo = str_replace('public', 'storage', $product->photo);
+
+            $product->quantity = str_replace('.', ',', $product->quantity);
+
+            if($product->unit == 4)
+                $product->quantity = (integer) $product->quantity;
+
+            $product->price = str_replace('.', ',', $product->price);
+
+            $product->category_name = $product->category_id == "" ? "Sem Categoria" :
+                ucfirst($this->categories->findByField('id', $product->category_id)->first()->name);
+        }
+
+        return view('index', compact('list', 'form', 'route', 'scripts', 'categories', 'products'));
     }
 
     public function create()
@@ -55,8 +90,15 @@ class ProductController extends Controller
 
         $scripts[] = '../../js/product.js';
 
+        $categories = $this->categories->findByField('class', 'product');
+
+        foreach ($categories as $category)
+        {
+            $category->name = ucfirst($category->name);
+        }
+
         return view('index', compact('route', 'edit', 'form', 'types',
-            'list', 'units', 'scripts'));
+            'list', 'units', 'scripts', 'categories'));
     }
 
 
@@ -74,8 +116,14 @@ class ProductController extends Controller
 
         $scripts[] = '../../js/product.js';
 
-        $product = $this->repository->findByField('id', $id)->first();
+        $categories = $this->categories->findByField('class', 'product');
 
+        foreach ($categories as $category)
+        {
+            $category->name = ucfirst($category->name);
+        }
+
+        $product = $this->repository->findByField('id', $id)->first();
 
 
         if($product) {
@@ -85,6 +133,7 @@ class ProductController extends Controller
             $product->stock_max = str_replace('.', ',', $product->stock_max);
             $product->quantity = str_replace('.', ',', $product->quantity);
             $product->price = str_replace('.', ',', $product->price);
+            $product->sale_price = str_replace('.', ',', $product->sale_price);
             $product->icms = str_replace('.', ',', $product->icms);
             $product->ipi = str_replace('.', ',', $product->ipi);
             $product->pis = str_replace('.', ',', $product->pis);
@@ -94,7 +143,7 @@ class ProductController extends Controller
             $product->commission_tax = str_replace('.', ',', $product->commission_tax);
 
             return view('index', compact('product', 'route', 'edit', 'form', 'types',
-                'list', 'units', 'scripts'));
+                'list', 'units', 'scripts', 'categories'));
         }
 
         abort(404);
@@ -200,5 +249,32 @@ class ProductController extends Controller
         }
 
         return redirect()->route('product.create');
+    }
+
+    public function delete($id)
+    {
+        $product = $this->repository->findByField('id', $id)->first();
+
+        if($product)
+        {
+            try {
+                $x['status'] = 0;
+
+                $this->repository->update($x, $id);
+
+                DB::commit();
+
+                return json_encode(['status' => true, 'msg' => 'O produto ' . $product->name . ' foi excluído com sucesso']);
+
+            }catch (\Exception $e)
+            {
+                DB::rollBack();
+
+                return json_encode(['status' => false, 'msg' => $e->getMessage()]);
+            }
+        }
+        else
+            return json_encode(['status' => false, 'msg' => 'Este produto não existe']);
+
     }
 }

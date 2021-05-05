@@ -29,8 +29,8 @@ $(function (){
         if($("#shipping_tax").val() != "" && $("#shipping_value").val() != "")
         {
             sweet_alert_error('Preencha apenas o campo alíquota do frete ou valor do frete');
-            $("#shipping_tax").addClass('has-error').removeClass('has-success');
-            $("#shipping_value").addClass('has-error').removeClass('has-success');
+            $("#shipping_tax").addClass('has-error').removeClass('custom-has-success');
+            $("#shipping_value").addClass('has-error').removeClass('custom-has-success');
             e.preventDefault();
             return;
         }
@@ -38,8 +38,8 @@ $(function (){
         if($("#commission_value").val() != "" && $("#commission_tax").val() != "")
         {
             sweet_alert_error('Preencha apenas o campo comissão percentual do vendedor ou valor total da comissão');
-            $("#commission_tax").addClass('has-error').removeClass('has-success');
-            $("#commission_value").addClass('has-error').removeClass('has-success');
+            $("#commission_tax").addClass('has-error').removeClass('custom-has-success');
+            $("#commission_value").addClass('has-error').removeClass('custom-has-success');
             e.preventDefault();
             return;
         }
@@ -48,10 +48,10 @@ $(function (){
     $(".opt-ship").change(function (){
         console.log($(this));
         if(($("#shipping_tax").val() != "" && $("#shipping_value").val() == "") || ($("#shipping_tax").val() == "" && $("#shipping_value") != ""))
-            $(".opt-ship").removeClass('has-error').addClass('has-success');
+            $(".opt-ship").removeClass('has-error').addClass('custom-has-success');
 
         else if($("#shipping_tax").val() != "" && $("#shipping_value").val() != "") {
-            $(".opt-ship").removeClass('has-success').addClass('has-error');
+            $(".opt-ship").removeClass('custom-has-success').addClass('has-error');
             sweet_alert_error('Preencha apenas o campo alíquota do frete ou valor do frete');
         }
     });
@@ -59,10 +59,10 @@ $(function (){
 
     $(".opt-comm").change(function (){
         if(($("#commission_tax").val() != "" && $("#commission_value").val() == "") || ($("#commission_tax").val() == "" && $("#commission_value") != ""))
-            $('.opt-comm').removeClass('has-error').addClass('has-success');
+            $('.opt-comm').removeClass('has-error').addClass('custom-has-success');
 
         else if($("#commission_tax").val() != "" && $("#commission_value").val() != "") {
-            $(".opt-comm").removeClass('has-success').addClass('has-error');
+            $(".opt-comm").removeClass('custom-has-success').addClass('has-error');
             sweet_alert_error('Preencha apenas o campo comissão percentual do vendedor ou valor total da comissão');
         }
     });
@@ -91,7 +91,8 @@ function readURL(input) {
     }
 }
 
-function delete_product(id)
+
+/*function delete_product(id)
 {
 
     var request = $.ajax({
@@ -103,40 +104,91 @@ function delete_product(id)
     request.done(function (e) {
 
         if(e.status)
-        {
-            var data = {
-                title: 'Sucesso',
-                text: 'O produto selecionado foi excluído',
-                type: 'success',
-                confirmButtonClass: 'btn btn-success'
-            };
+            sweet_alert_success('O produto foi excluído com sucesso');
+        else
+            sweet_alert_error();
 
-            swal(data);
-
-        }else{
-
-            data = {
-                title: 'Atenção',
-                text: 'Um erro ocorreu, tente novamente mais tarde',
-                type: 'danger',
-                confirmButtonClass: 'btn btn-danger'
-            };
-
-            swal(data);
-        }
     });
 
     request.fail(function (e) {
         console.log('fail');
         console.log(e);
 
-        data = {
-            title: 'Atenção',
-            text: 'Um erro ocorreu, tente novamente mais tarde',
-            type: 'danger',
-            confirmButtonClass: 'btn btn-danger'
-        };
+        sweet_alert_error();
+    });
+}*/
 
-        swal(data);
+
+function new_category()
+{
+
+    var name = $("#new_category").val();
+
+    let promise = new Promise(function(resolve, reject) {
+
+        $.ajax({
+            url: '/category_exists/' + name + '/' + 'product',
+            method: "GET",
+            dataType: 'json',
+
+        }).done(function (e){
+            console.log(e);
+
+            resolve(e.status);
+        }).fail(function (e){
+            console.log(e);
+
+            reject(new Error(e));
+        });
+        //setTimeout(() => resolve("done!"), 1000);
+    });
+
+// resolve runs the first function in .then
+    promise.then(
+        function (result){
+            console.log(result);
+
+            if(!result)
+                store_category();
+
+            else{
+                sweet_alert_error('Esta categoria já existe');
+            }
+        }, // shows "done!" after 1 second
+        function(error){
+            alert(error)
+        } // doesn't run
+    );
+
+    promise.finally(function (){
+        $("#new_category").val('');
+    });
+}
+
+function store_category()
+{
+    var name = $("#new_category").val();
+
+    $.ajax({
+        url: '/new_category',
+        method: 'POST',
+        dataType: 'json',
+        data: {
+            'name': name,
+            'class': 'product'
+        }
+    }).done(function (e){
+        if(e.status) {
+            sweet_alert_success('A Categoria ' + name + ' foi cadastrada com sucesso');
+
+            var append = '<option selected value="'+e.id+'">'+name+'</option>';
+
+            $("#category_id").append(append);
+            trigger_click_btn_success();
+        }
+    }).fail(function (e){
+        console.log('fail', e);
+
+        sweet_alert_error('Um erro ocorreu, tente novamente mais tarde');
     });
 }

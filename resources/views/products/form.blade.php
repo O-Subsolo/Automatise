@@ -8,6 +8,33 @@
         </ol>
     </div>
     <div class="main-content container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="panel panel-default">
+                    <div class="panel-body xs-pb-10">
+                        <form action="#" class="form-horizontal">
+                            <div class="form-group">
+                                <div class="col-md-6 col-sm-12" ></div>
+                                <div class="col-md-6 col-sm-12">
+
+                                    <a href="javascript:" class="btn btn-info btn-lg md-trigger" data-modal="modal_new_category" style="float:right;">
+                                        <i class="icon icon-left mdi mdi-plus"></i>
+                                        Nova Categoria
+                                    </a>
+
+                                    <a href="javascript:" class="btn  btn-warning btn-lg" style="float: right;margin-inline-end: 10px;">
+                                        <i class="icon icon-left mdi mdi-format-list-bulleted"></i>
+                                        Lista de Categorias
+                                    </a>
+
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!--Basic forms-->
         <div class="row">
             <div class="col-sm-12">
@@ -64,10 +91,24 @@
                                     </select>
                                 </div>
 
-                                <div class="form-group col-md-4 col-sm-12">
+                                <div class="form-group col-md-2 col-sm-12">
                                     <label>Marca</label>
                                     <input type="text" name="brand" id="brand" placeholder="Andrey Kalishnikov URSS" class="form-control input-sm"
                                            value="@if($edit){{ $product->brand }}@else{{ old('brand') }}@endif">
+                                </div>
+
+                                <div class="form-group col-md-2 col-sm-12">
+                                    <label>Categoria</label>
+                                    <select name="category_id" id="category_id" class="form-control input-sm">
+                                        <option value="">Selecione</option>
+                                        @foreach($categories as $category)
+                                            @if($edit)
+                                                <option value="{{ $category->id }}" @if($category->id == $product->category_id) selected @endif>{{ $category->name }}</option>
+                                            @else
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 
@@ -169,13 +210,19 @@
                     </div>
                     <div class="panel-body">
                         <div class="row no-margin-y">
-                            <div class="form-group col-md-3 col-sm-12">
+                            <div class="form-group col-md-2 col-sm-12">
                                 <label>Preço de Custo</label>
                                 <input type="text" placeholder="0,00" name="price" id="price" class="form-control input-sm number"
                                        value="@if($edit){{ $product->price }}@else{{ old('price') }}@endif">
                             </div>
 
-                            <div class="form-group col-md-3 col-sm-12">
+                            <div class="form-group col-md-2 col-sm-12">
+                                <label>Preço de Venda</label>
+                                <input type="text" placeholder="0,00" name="sale_price" id="sale_price" class="form-control input-sm number"
+                                       value="@if($edit){{ $product->sale_price }}@else{{ old('sale_price') }}@endif">
+                            </div>
+
+                            <div class="form-group col-md-2 col-sm-12">
                                 <label>Alíquota de ICMS</label>
                                 <input type="text" placeholder="%" class="form-control input-sm number" name="icms" id="icms"
                                 value="@if($edit){{ $product->icms }}@else{{ old('icms') }}@endif">
@@ -245,3 +292,37 @@
         </div>
     </div>
 </div>
+
+<div id="modal_new_category" class="modal-container colored-header colored-header-success custom-width modal-effect-9">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" data-dismiss="modal" aria-hidden="true" class="close modal-close"><span class="mdi mdi-close"></span></button>
+            <h3 class="modal-title">Nova Categoria de Produtos</h3>
+        </div>
+        <div class="modal-body form">
+            <div class="form-group">
+                <input type="text" id="new_category" placeholder="Digite a nova categoria" class="form-control">
+                <br>
+                <span id="err_cat_found" style="color:red; display:none;">Erro! Esta categoria já existe.</span>
+            </div>
+
+            {{--<div class="row">
+                <div class="form-group col-md-12">
+                    <div class="be-checkbox">
+                        <input id="check1" type="checkbox">
+                        <label for="check1">Send me notifications about new products and services.</label>
+                    </div>
+                </div>
+            </div>--}}
+        </div>
+        <div class="modal-footer">
+            <button type="button" data-dismiss="modal" class="btn btn-default modal-close">
+                <i class="fas fa-times"></i> Cancelar
+            </button>
+            <button type="button" data-dismiss="modal" class="btn btn-success modal-close" onclick="new_category();">
+                <i class="fas fa-check"></i> Cadastrar
+            </button>
+        </div>
+    </div>
+</div>
+<div class="modal-overlay"></div>

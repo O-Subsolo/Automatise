@@ -10,6 +10,8 @@ loading.css('display', 'block');
 
 $(function () {
 
+
+
     loading.css('display', 'none');
 
     $("input").attr('autocomplete', 'off');
@@ -463,37 +465,12 @@ $(function () {
 
 function add_model($model)
 {
+
     switch ($model){
-        case 'car':
-            location.href = '/novo-carro';
-            break;
-
-        case 'os':
-            location.href = '/criar-os';
-            break;
-
-        case 'vehicle':
-            location.href = '/criar-veiculo';
-            break;
-
-        case 'user':
-            location.href = '/criar-usuario';
-            break;
-
-        case 'employee':
-            location.href = '/novo-operador';
-            break;
 
         case 'product':
-            location.href = '/novo-produto';
-            break;
-
-        case 'service':
-            location.href = '/novo_servico';
-            break;
-
-        case 'parts':
-            location.href = '/criar-peca';
+            console.log($model)
+            location.href = '/criar_produto';
             break;
 
         default:
@@ -645,7 +622,7 @@ function search_model()
 
 //Used to verify which model has to be deleted
 //Usado para verificar qual classe deve ser excluída
-function delete_model($id)
+/*function delete_model($id)
 {
     var page = location.pathname;
 
@@ -657,7 +634,65 @@ function delete_model($id)
         case '/carros':
             delete_car($id);
             break;
+
+        case '/produtos':
+            delete_product($id);
+            break;
     }
+}*/
+
+function verify_model($id)
+{
+    $("#full-danger").niftyModal();
+    $("#h3_full_danger").text('Atenção');
+    $("#p_full_danger").text($("#model_text").val());
+
+    localStorage.setItem('model_id', $id);
+
+    console.log(location.pathname);
+}
+
+function delete_model()
+{
+    const url = location.pathname;
+    const id = localStorage.getItem('model_id');
+
+    let promise = new Promise(function (resolve, reject){
+        $.ajax({
+            url: url + '/' + id,
+            method: "DELETE",
+            dataType: 'json',
+
+        }).done(function (e){
+            resolve(e);
+
+        }).fail(function (e){
+            console.log('fail', e);
+            reject(new Error(e));
+        });
+    });
+
+    promise.then(
+        function (result){
+            console.log(result);
+            if(result.status)
+            {
+                sweet_alert_success(result.msg);
+                $("#tr-"+id).remove();
+                trigger_click_btn_success();
+            }
+            else
+                sweet_alert_error();
+        },
+
+        function (error){
+            alert(error)
+        }
+    );
+
+    promise.finally(function (){
+        localStorage.removeItem('model_id');
+    });
 }
 
 //Load more data to increase list (infinite pagination)
@@ -886,19 +921,32 @@ function sweet_alert($data, $ajax) {
 function sweet_alert_error($msg, $timer) {
     var msg = $msg ? $msg : 'Um erro desconhecido ocorreu, tente novamente mais tarde';
 
-    swal(msg, {
+    $("#full-error").niftyModal();
+
+    $("#h3_full_error").text('Atenção');
+
+    $("#p_full_error").text(msg);
+
+    /*swal(msg, {
         icon: 'error',
         timer: $timer ? $timer : 3000
-    });
+    });*/
 }
 
 function sweet_alert_success($msg, $timer) {
+
+    $('#full-success').niftyModal();
+
     var msg = $msg ? $msg : 'Sucesso';
 
-    swal(msg, {
+    $("#h3_full_success").text('Sucesso');
+
+    $("#p_full_success").text(msg);
+
+    /*swal(msg, {
         icon: 'success',
         timer: $timer ? $timer : 3000
-    });
+    });*/
 }
 
 function clean_fields($class) {
@@ -1227,6 +1275,30 @@ function verify_email($email)
 function logout()
 {
     $("#logout").submit();
+}
+
+function reload_page_delay($delay)
+{
+    var delay = $delay ? $delay : 3000;
+
+    let promise = new Promise(function(resolve, reject) {
+        setTimeout(() => resolve(), delay);
+    });
+
+    promise.then(result => location.reload());
+}
+
+function trigger_click_btn_success($delay)
+{
+    var delay = $delay ? $delay : 3000;
+
+    let promise = new Promise(function (resolve, reject){
+        setTimeout(() => resolve(), delay);
+    });
+
+    promise.then(function (result){
+        $("#btn_full_success").trigger('click');
+    });
 }
 
 
